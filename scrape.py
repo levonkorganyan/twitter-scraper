@@ -115,22 +115,21 @@ def create_file(path):
     filename = str(datetime.datetime.now().timestamp()).replace('.', '_') + '.json'
     full_path = os.path.join(path, filename)
     file = open(full_path, 'w')
-    file.close();
-    return full_path;
+    file.close()
+    return full_path
 
 
 def run(hashtag, since, until, path):
     api = Api()
     request = {
-        'hashtag': '#DontBelieveArmenia',
+        'hashtag': hashtag,
         'since': since,
         'until': until
     }
     days_since = datetime.datetime.now() - datetime.timedelta(since)
     days_until = datetime.datetime.now() - datetime.timedelta(until)
 
-    group_index = 0;
-
+    group_index = 0
     for page in api.get_tweets_for_hashtag(hashtag, days_since, days_until):
         if group_index % PAGE_GROUP_SIZE == 0:
             file_path = create_file(path)
