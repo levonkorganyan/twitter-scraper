@@ -15,6 +15,7 @@ import click
 
 
 from api import Api
+from util import *
 import pdb
 
 # How many pages of tweets will go into one file. Each page is roughly 72 tweets per the twitter api limit
@@ -22,19 +23,6 @@ import pdb
 # A page size of a 200 will produce files of ~86k tweets that are ~15MB in size
 PAGE_GROUP_SIZE = 200
 
-def read_last_line(f):
-    for line in f:
-        pass
-    last_line = line
-    return last_line;
-
-def twitter_date_to_datetime(datestring):
-    time_tuple = parsedate_tz(datestring.strip())
-    dt = datetime.datetime(*time_tuple[:6])
-    return dt - timedelta(seconds=time_tuple[-1])
-
-def datetime_diff_days(a, b):
-    return (a - b).dayss
 
 @click.group()
 def cli():
@@ -90,7 +78,6 @@ def resume(setname):
                 if not 'until' in request:
                     continue
                 until = request['until']
-                print(until)
                 if not 'hashtag' in request:
                     continue
                 hashtag = request['hashtag']
