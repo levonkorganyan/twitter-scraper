@@ -51,7 +51,6 @@ class Api:
         return tweepy.Cursor(
             self._get_api().search,
             q=query,
-            count=5000,
             lang="en",
             since=Api._date_string(since),
             until=Api._date_string(until),
