@@ -19,7 +19,10 @@ ApiKeySecret=
 ```
 
 ## Usage
-Run
+
+### Scrape
+
+#### Run
 ```bash
 python3 scrape.py (create|resume) --help
 ```
@@ -29,7 +32,19 @@ To summarize, the `create` command will start a new data set in directory `data/
 
 Note: Hashtags don't require `#` character as a prefix to make it easier in bash environments
 
-### Example
+#### Example
 ```bash
 python3 scrape.py create mytestset TheKidFromAkron 3 # get tweets from the last 3 days including this hashtag
+```
+
+### Normalize
+
+#### Run
+```bash
+python3 normalize to-csv --help
+```
+
+#### Example
+```
+python3 normalize to-csv data mytestset
 ```
